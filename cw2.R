@@ -43,7 +43,7 @@ outer(1:5, 1:5, FUN=function(x, y) paste(x, '*', y, '=', x*y))
 
 # zadanie 5 ---------------------------------------------------------------
 
-plik <- read.csv("/home/ania/Pulpit/statystyka/dane1.csv", header = TRUE, sep=";")
+plik <- read.csv("dane1.csv", header = TRUE, sep=";")
 (plik)
 #tylko parzyste wiersze
 #???
@@ -67,4 +67,4 @@ names(ramka) <- c("month", "NY_Fahrenheit", "NY_Celsiusz")
 #usuwanie kolumny
 ramka[,-2]
 #zapisywanie danych
-save(ramka, file="/home/ania/Pulpit/statystyka/NY_temp.RData")
+save(ramka, file="NY_temp.RData")
