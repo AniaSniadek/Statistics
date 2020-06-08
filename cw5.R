@@ -5,7 +5,6 @@ load("Centrala.RData")
 
 #2.1
 #sugeruje rozkład Poissona
-(rozklad_centrali = prop.table(table(Centrala)))
 
 #2.2
 #estymator
@@ -27,8 +26,13 @@ barplot(counts,
         main = "Rozkłady empiryczny i teoretyczny liczby zgłoszeń",
         col = c("red", "blue"), legend = rownames(counts), beside = TRUE)
 
-# wykres kwantyl-kwantyl
-???
+#wykres kwantyl-kwantyl
+qqplot(rpois(length(Centrala$Liczba), lambda = p_est), Centrala$Liczba,
+       xlab = "Kwantyle teoretyczne", ylab = "Kwantyle empiryczne",
+       main="Wykres kwantyl-kwantyl dla liczby zgłoszeń")
+qqline(Centrala$Liczba, distribution = function(probs){
+  qpois(probs, lambda = p_est)
+})
 
 #2.6
 # prawd. empiryczne
@@ -49,7 +53,7 @@ wiatr = c(0.9, 6.2, 2.1, 4.1, 7.3, 1.0, 4.6, 6.4, 3.8, 5.0, 2.7, 9.2, 5.9, 7.4, 
 (ENW = mean(wiatr^2))
 
 #4.3
-# histogram z estymatorem jądrowym gęstości
+#histogram z estymatorem jądrowym gęstości
 lambda <- ENW
 
 hist(wiatr, 
@@ -62,14 +66,20 @@ curve(VGAM::drayleigh(x, sqrt(lambda / 2)),
       add = TRUE, col = "blue", lwd = 2)
 legend(x = 5, y = 0.04, legend = c("empiryczny", "teoretyczny"), col = c("red", "blue"), lwd = 2)
 
-# wykres kwantyl-kwantyl 
+#4.4
+#wykres kwantyl-kwantyl 
 EnvStats::qqPlot(wiatr, 
                  distribution = "unif", 
                  param.list = list(min = min(wiatr), max = max(wiatr)),
-                 add.line = TRUE)
+                 add.line = TRUE,
+                 xlab = "Kwantyle teoretyczne", ylab = "Kwantyle empiryczne",
+                 main="Wykres kwantyl-kwantyl dla średniej szybkości wiatru")
 
 #4.6
-# prawd. empiryczne
+#prawd. empiryczne
 mean(wiatr >= 4 & wiatr <= 8)
-# prawd. teoretyczne
-#???
+#prawd. teoretyczne
+#??
+
+#4.7
+#??
