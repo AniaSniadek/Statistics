@@ -70,7 +70,7 @@ colnames(dane) <- c("wynik", "instrukcja")
 #2.2
 #średnia wartości cech
 aggregate(dane$wynik,
-          list(CONTEXT = dane$instrukcja),
+          list(Instrukcja = dane$instrukcja),
           FUN = mean)
 
 #wykres ramkowy
