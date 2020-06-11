@@ -1,14 +1,31 @@
 #MODEL STATYSTYCZNY I ESTYMACJA PUNKTOWA
 
+# zadanie 1 ---------------------------------------------------------------
+load(url("http://ls.home.amu.edu.pl/data_sets/czas_oczek_tramwaj.RData"))
+(czas_oczek_tramwaj)
+
+#estymator średniej i odchylenia standardowego
+a_est <- mean(czas_oczek_tramwaj) - sqrt(3) * sd(czas_oczek_tramwaj) * sqrt((length(czas_oczek_tramwaj) - 1) / (length(czas_oczek_tramwaj)))
+b_est <- mean(czas_oczek_tramwaj) + sqrt(3) * sd(czas_oczek_tramwaj) * sqrt((length(czas_oczek_tramwaj) - 1) / (length(czas_oczek_tramwaj)))
+
+library(EnvStats)
+p_est <- EnvStats::eunif(czas_oczek_tramwaj, method = "mme")
+
 # zadanie 2 ---------------------------------------------------------------
 load("Centrala.RData")
+(Centrala)
 
 #2.1
+#dyskretna zmienna ilościowa
+#wykres słupkowy
+barplot(prop.table(table(Centrala$Liczba)),
+        main = "Rozkład empiryczny liczby zgłoszeń")
 #sugeruje rozkład Poissona
 
 #2.2
 #estymator
-(p_est <- mean(Centrala$Liczba))
+library(EnvStats)
+(p_est <- EnvStats::epois(Centrala$Liczba)$parameters)
 
 #2.3
 #empiryczne i teoretyczne - porównanie
