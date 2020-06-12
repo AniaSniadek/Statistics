@@ -1,3 +1,4 @@
+#PRÓBNY TEST
 
 # zadanie 3 ---------------------------------------------------------------
 plik <- read.csv("weight-height.csv")
@@ -32,3 +33,12 @@ plik2 <- read.csv("computers.csv")
 
 #rozkład zmiennej RAM - w procentach
 (prop.table(table(dane$ram)))
+
+# zadanie 5 ---------------------------------------------------------------
+spotify <- read.csv("spotify.csv")
+(spotify)
+spotify_num <- spotify[,1:9]
+(spotify_num)
+pca <- prcomp(spotify_num, scale=TRUE)
+summary(pca)
+#PC3 = 58,26
