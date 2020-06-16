@@ -19,12 +19,18 @@ plot(dane, main="Wykres rozrzutu", pch=16)
 plot(dane, main="Wykres rozrzutu", pch=16)
 abline(model, col="red", lwd=2)
 #estymacja parametrów
+#estymatory
 coef(model)
+#przedziały ufności
 confint(model)
 
 #1.3
 #podsumowanie modelu
 summary(model)
+#istotne współczynniki jeżeli p-value < 0.05
+#oby dwa są istotne
+#dopasowanie modelu - Multiple R-squared bliskie 1 to bardzo dobre
+#dopasowanie bardzo dobre bo 0.9919
 
 #1.4
 #wartości dopasowane przez model
